@@ -1,6 +1,5 @@
 #include <windows.h>
 #include <stdio.h>
-#include "fastlz.h"
 #include "lodepng.h"
 #include "libimagequant.h"
 
@@ -33,7 +32,8 @@ int encodeAndWrite(const char *inputName, const char *outputName)
   state.info_raw.bitdepth = 8;
   state.info_png.color.colortype = LCT_PALETTE;
   state.info_png.color.bitdepth = 8;
-  for(int i=0; i < palette->count; i++) {
+  for(int i = 0; i < palette->count; i++)
+  {
      lodepng_palette_add(&state.info_png.color, palette->entries[i].r,
        palette->entries[i].g, palette->entries[i].b, palette->entries[i].a);
      lodepng_palette_add(&state.info_raw, palette->entries[i].r,
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 {
   if(argc < 3)
   {
-    return printf("Usage: %s input.png output.png.lz\n", argv[0]);
+    return printf("Usage: %s input.png output.png\n", argv[0]);
   }
   encodeAndWrite(argv[1], argv[2]);
   return 0;
